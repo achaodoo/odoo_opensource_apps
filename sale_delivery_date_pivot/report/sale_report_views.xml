@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_product_search_inherit_sale_report_commitment_date" model="ir.ui.view">
+        <field name="name">sale.report.search.inherit.sale.commitment.date</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='date']" position="after">
+                <filter string="Delivery Date" name="commitment_date" date="commitment_date"/>
+                <filter string="Delivery Date" name="group_by_commitment_day"
+                        context="{'group_by':'commitment_date:day'}"
+                        invisible="not context.get('sale_report_view_hide_date')"/>
+            </xpath>
+
+            <xpath expr="//filter[@name='date']" position="after">
+                <filter string="Delivery Date" name="date" context="{'group_by':'commitment_date'}"
+                        invisible="context.get('sale_report_view_hide_date')"/>
+                <filter string="Delivery Date" name="group_by_date_day" context="{'group_by':'commitment_date:day'}"
+                        invisible="not context.get('sale_report_view_hide_date')"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
