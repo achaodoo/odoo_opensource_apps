@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <menuitem id="menu_cheque_tracker_root"
+          name="Cheque Tracker"
+          sequence="25"
+          parent="account.account_account_menu"
+          groups="account.group_account_user,account.group_account_manager"/>
+
+    <menuitem id="menu_cheque_tracker_status"
+              name="Cheque Tracker Status"
+              sequence="10"
+              parent="menu_cheque_tracker_root"
+              action="cheque_tracker_status_action"
+              groups="account.group_account_user,account.group_account_manager"/>
+
+    <menuitem id="menu_cheque_tracker_report"
+              name="Cheque Tracker Report"
+              sequence="20"
+              parent="menu_cheque_tracker_root"
+              action="cheque_tracker_report_action"
+              groups="account.group_account_user,account.group_account_manager"/>
+
+</odoo>
+

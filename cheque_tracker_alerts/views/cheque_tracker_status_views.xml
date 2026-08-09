@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="cheque_tracker_status_view_search" model="ir.ui.view">
+            <field name="name">cheque.tracker.status.search</field>
+            <field name="model">cheque.tracker.status</field>
+            <field name="arch" type="xml">
+                <search string="Cheque Tracker Status">
+                    <field name="name"/>
+                    <field name="alert_required"/>
+                    <group expand="0" string="Group By">
+                        <filter name="alert_required" string="Alert" domain="[]"
+                                context="{'group_by': 'alert_required'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="cheque_tracker_status_view_form" model="ir.ui.view">
+            <field name="name">cheque.tracker.status.form</field>
+            <field name="model">cheque.tracker.status</field>
+            <field name="arch" type="xml">
+                <form string="Cheque Tracker Status">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="alert_required"/>
+                            <field name="no_of_days" invisible="alert_required=='no'"/>
+                            <field name="is_completed" invisible="1"/>
+                            <field name="cheque_tracker_name" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cheque_tracker_status_view_tree" model="ir.ui.view">
+            <field name="name">cheque.tracker.status.tree</field>
+            <field name="model">cheque.tracker.status</field>
+            <field name="arch" type="xml">
+                <tree string="Loan">
+                    <field name="name"/>
+                    <field name="alert_required"/>
+                    <field name="no_of_days"/>
+                    <field name="is_completed" column_invisible="True"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cheque_tracker_status_action" model="ir.actions.act_window">
+            <field name="name">Cheque Tracker status</field>
+            <field name="res_model">cheque.tracker.status</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

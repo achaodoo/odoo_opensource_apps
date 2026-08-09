@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    Actions for pdf report -->
+    <record id="action_tracker_report" model="ir.actions.report">
+        <field name="name">cheque tracker status</field>
+        <field name="model">tracker.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cheque_tracker_alerts.report_cheque_tracker_status</field>
+        <field name="report_file">cheque_tracker_alerts.report_cheque_tracker_status</field>
+    </record>
+</odoo>

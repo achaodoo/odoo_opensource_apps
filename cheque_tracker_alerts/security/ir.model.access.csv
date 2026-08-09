@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cheque_tracker_status,access_cheque_tracker_status.employee_cheque_tracker_status,model_cheque_tracker_status,,1,1,1,1
+access_tracker_report,access_tracker_report.employee_tracker_report,model_tracker_report,,1,1,1,1
+

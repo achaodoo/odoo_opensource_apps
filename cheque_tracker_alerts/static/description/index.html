@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stock Lot - Grouped SUM Documentation</title>
+        <style>
+            .screenshot-img {
+                max-width: 90%;
+                height: auto;
+                border: 1px solid #ccc;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+    <h1>Cheque Tracker Status</h1>
+
+    <p>
+        <strong>Cheque Tracker Status</strong> helps businesses track and manage
+        cheque payments in Odoo Community with PDC/CDC status management,
+        configurable alert periods, automated email notifications, and
+        cheque tracking reports.
+    </p>
+
+
+    <h2>Key Functionality</h2>
+
+    <ul>
+        <li>
+            <strong>PDC &amp; CDC Tracking:</strong>
+            Manage Post-Dated Cheque (PDC) and Current-Dated Cheque (CDC)
+            statuses for cheque payments.
+        </li>
+
+        <li>
+            <strong>Cheque Date:</strong>
+            Record and track the cheque date directly on customer and vendor
+            payments.
+        </li>
+
+        <li>
+            <strong>Configurable Alerts:</strong>
+            Configure whether an alert is required and define the number of
+            days before the cheque date.
+        </li>
+
+        <li>
+            <strong>Automatic Cheque Tracking:</strong>
+            Automatically identify cheque payments that have reached their
+            configured alert period.
+        </li>
+
+        <li>
+            <strong>Email Notifications:</strong>
+            Automatically notify accounting users and managers when action
+            is required for a cheque payment.
+        </li>
+
+        <li>
+            <strong>Cheque Tracker Report:</strong>
+            Generate a PDF report of cheque transactions based on date range
+            and payment type.
+        </li>
+
+        <li>
+            <strong>Incoming &amp; Outgoing Payments:</strong>
+            Track both received and sent cheque payments.
+        </li>
+
+        <li>
+            <strong>Accounting Integration:</strong>
+            Integrates with Odoo Accounting, journals, and payments.
+        </li>
+    </ul>
+
+
+    <h2>Cheque Tracker in Accounting</h2>
+
+    <p>
+        Access the Cheque Tracker features directly from the Accounting
+        application. The module provides dedicated menus for cheque tracker
+        configuration and reporting.
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_menu.png"
+             alt="Cheque Tracker menu under Odoo Accounting"
+             class="screenshot-img"/>
+    </p>
+
+
+    <h2>Track Cheque Payments</h2>
+
+    <p>
+        Cheque payments are clearly identified in the payment list with their
+        journal, payment method, customer, cheque tracker status, amount, and
+        payment status.
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_payments.png"
+             alt="Customer payments with cheque tracker status"
+             class="screenshot-img"/>
+    </p>
+
+
+    <h2>Configure PDC and CDC Status</h2>
+
+    <p>
+        Configure the cheque tracker status according to your business
+        requirements. The module supports both <strong>PDC</strong> and
+        <strong>CDC</strong> statuses.
+    </p>
+
+    <p>
+        For each status, you can configure whether an alert is required and
+        specify the number of days for the alert.
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_status.png"
+             alt="PDC and CDC cheque tracker status configuration"
+             class="screenshot-img"/>
+    </p>
+
+    <ul>
+        <li><strong>PDC:</strong> Post-Dated Cheque</li>
+        <li><strong>CDC:</strong> Current-Dated Cheque</li>
+        <li><strong>Alert Required:</strong> Enable or disable cheque alerts</li>
+        <li><strong>Number of Days:</strong> Configure the alert period</li>
+    </ul>
+
+
+    <h2>Automated Cheque Alerts</h2>
+
+    <p>
+        The module uses an Odoo scheduled action to automatically check
+        cheque payments that require attention.
+    </p>
+
+    <p>
+        The scheduled action runs automatically at the configured interval,
+        eliminating the need to manually check every cheque payment.
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_scheduler.png"
+             alt="Scheduled action for automatic cheque tracker alerts"
+             class="screenshot-img"/>
+    </p>
+
+
+    <h2>Automated Email Notifications</h2>
+
+    <p>
+        When a cheque reaches its configured alert period, the module can
+        automatically send an email notification to accounting users and
+        managers.
+    </p>
+
+    <p>
+        This helps the accounting team identify upcoming cheque dates and
+        take the necessary action on time.
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_email.png"
+             alt="Automated cheque tracker email notification"
+             class="screenshot-img"/>
+    </p>
+
+
+    <h2>Cheque Tracker Report</h2>
+
+    <p>
+        Generate a cheque tracker report using the built-in report wizard.
+        Select the required date range and payment type before generating
+        the report.
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_report_wizard.png"
+             alt="Cheque Tracker Report wizard with date range and payment type"
+             class="screenshot-img"/>
+    </p>
+
+    <h3>Report Filters</h3>
+
+    <ul>
+        <li>
+            <strong>Date:</strong>
+            Select the beginning of the reporting period.
+        </li>
+        <li>
+            <strong>Date End:</strong>
+            Select the end of the reporting period.
+        </li>
+        <li>
+            <strong>Payment Type:</strong>
+            Select Send or Receive.
+        </li>
+    </ul>
+
+
+    <h2>Generated Cheque Tracker PDF Report</h2>
+
+    <p>
+        After selecting the required filters, generate a PDF report containing
+        the cheque transaction details.
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_pdf_report.png"
+             alt="Generated Cheque Tracker PDF report"
+             class="screenshot-img"/>
+    </p>
+
+    <h3>Report Information</h3>
+
+    <ul>
+        <li>Serial Number</li>
+        <li>Transaction Reference Number</li>
+        <li>Cheque Date</li>
+        <li>Party Name</li>
+        <li>Cheque Status</li>
+        <li>Cheque Amount</li>
+    </ul>
+
+
+    <h2>Complete Workflow</h2>
+
+    <p>
+        The module provides a simple workflow for managing cheque payments:
+    </p>
+
+    <ol>
+        <li>Configure PDC and CDC cheque statuses.</li>
+        <li>Configure the required alert period.</li>
+        <li>Record the cheque date on the payment.</li>
+        <li>Track cheque payments from the Accounting payment screen.</li>
+        <li>Allow the scheduled action to check upcoming cheque payments.</li>
+        <li>Receive automated email notifications when action is required.</li>
+        <li>Generate a cheque tracker PDF report when required.</li>
+    </ol>
+
+
+    <h2>Installation and Usage</h2>
+
+    <p>
+        Install the module in your Odoo Community database and configure
+        the cheque tracker statuses from the Accounting application.
+    </p>
+
+    <p>
+        After installation, navigate to:
+    </p>
+
+    <p>
+        <strong>Accounting → Configuration → Cheque Tracker</strong>
+    </p>
+
+    <p>
+        Configure the PDC/CDC statuses and alert settings before using the
+        automated cheque tracking functionality.
+    </p>
+
+
+    <section class="section">
+        <h2>About AchaOdoo</h2>
+
+        <p>
+            AchaOdoo specializes in Odoo ERP development, customizations,
+            integrations, technical consulting, and training. We build
+            high-quality Odoo modules and share practical knowledge through
+            tutorials, blogs, and courses to help businesses and developers
+            succeed with Odoo.
+        </p>
+    </section>
+
+
+    <section class="section">
+        <h2>Support</h2>
+
+        <p>
+            Need assistance or have questions about this module?
+        </p>
+
+        <ul>
+            <li>
+                🌐 Website:
+                <a href="https://achaodoo.com"
+                   rel="noopener noreferrer"
+                   target="_blank">
+                    https://achaodoo.com
+                </a>
+            </li>
+
+            <li>
+                📧 Email:
+                <a href="mailto:hello.achaodoo@gmail.com">
+                    hello.achaodoo@gmail.com
+                </a>
+            </li>
+        </ul>
+    </section>
+
+
+    <footer>
+        <p>
+            Developed by
+            <strong>AchaOdoo</strong>
+            |
+            © 2026 AchaOdoo. All Rights Reserved.
+        </p>
+
+        <p>
+            🌐
+            <a href="https://achaodoo.com"
+               rel="noopener noreferrer"
+               target="_blank"
+               style="color:#000000;">
+                achaodoo.com
+            </a>
+            |
+            📧
+            <a href="mailto:hello.achaodoo@gmail.com"
+               style="color:#000000;">
+                hello.achaodoo@gmail.com
+            </a>
+            |
+            💼
+            <a href="https://www.linkedin.com/company/achaodoo/"
+               rel="noopener noreferrer"
+               target="_blank"
+               style="color:#000000;">
+                LinkedIn
+            </a>
+        </p>
+    </footer>
+
+</body>
+</html>

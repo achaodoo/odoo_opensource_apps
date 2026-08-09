@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='tracker_report_view_form'>
+            <field name="name">tracker.report.form</field>
+            <field name="model">tracker.report</field>
+            <field name="arch" type="xml">
+                <form string="Wizard">
+
+                    <group col="4" string="Dates">
+                        <field name="date_start" required="1"/>
+                        <field name="date_end" required="1"/>
+                    </group>
+
+                    <group>
+                        <field name="payment_type" required="1"/>
+                    </group>
+
+
+                    <footer>
+
+                        <button name="action_get_report" string="Report" type="object"
+                                context="{'xls_export':1}" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="cheque_tracker_report_action" model="ir.actions.act_window">
+            <field name="name">Cheque Tracker Report</field>
+            <field name="res_model">tracker.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="tracker_report_view_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+    </data>
+</odoo>
