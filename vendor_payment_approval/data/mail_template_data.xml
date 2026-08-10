@@ -1,0 +1,112 @@
+<odoo>
+    <data noupdate="1">
+        <record id="email_vendor_payment_accountant_notification"
+                model="mail.template">
+            <field name="name">Vendor Payment Accountant Notification</field>
+            <field name="model_id" ref="model_account_payment"/>
+
+            <field name="email_from">
+                {{ object.env.user.email or object.env.user.login }}
+            </field>
+
+            <field name="subject">
+                Vendor Payment Approved - Ready for Processing
+            </field>
+
+            <field name="body_html" type="html">
+                <p>Hi,</p>
+
+                <p>
+                    The following vendor payment has been approved and is ready
+                    for processing.
+                </p>
+
+                <p>
+                    <strong>Payment:</strong>
+                    <t t-out="object.name"/>
+                </p>
+
+                <p>
+                    <strong>Vendor:</strong>
+                    <t t-out="object.partner_id.name"/>
+                </p>
+
+                <p>
+                    <strong>Amount:</strong>
+                    <t t-out="object.amount"/>
+                    <t t-out="object.currency_id.name"/>
+                </p>
+
+                <p>
+                    <a t-att-href="'/web#id=%s&amp;view_type=form&amp;model=account.payment' % object.id"
+                       style="background-color:#875A7B;
+                      color:white;
+                      padding:10px 20px;
+                      text-decoration:none;
+                      display:inline-block;
+                      border-radius:4px;">
+                        <strong>View Payment</strong>
+                    </a>
+                </p>
+
+                <p>
+                    Thank you.
+                </p>
+            </field>
+        </record>
+
+        <record id="email_vendor_payment_approval_notification"
+                model="mail.template">
+            <field name="name">Vendor Payment Approval Notification</field>
+            <field name="model_id" ref="model_account_payment"/>
+
+            <field name="email_from">
+                {{ object.env.user.email or object.env.user.login }}
+            </field>
+
+            <field name="subject">
+                Vendor Payment Approval Required
+            </field>
+
+            <field name="body_html" type="html">
+                <p>Hi,</p>
+
+                <p>
+                    A vendor payment is waiting for your approval.
+                </p>
+
+                <p>
+                    <strong>Payment:</strong>
+                    <t t-out="object.name"/>
+                </p>
+
+                <p>
+                    <strong>Vendor:</strong>
+                    <t t-out="object.partner_id.name"/>
+                </p>
+
+                <p>
+                    <strong>Amount:</strong>
+                    <t t-out="object.amount"/>
+                    <t t-out="object.currency_id.name"/>
+                </p>
+
+                <p>
+                    <a t-att-href="'/web#id=%s&amp;view_type=form&amp;model=account.payment' % object.id"
+                       style="background-color:#875A7B;
+                      color:white;
+                      padding:10px 20px;
+                      text-decoration:none;
+                      display:inline-block;
+                      border-radius:4px;">
+                        <strong>Review Payment</strong>
+                    </a>
+                </p>
+
+                <p>
+                    Thank you.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

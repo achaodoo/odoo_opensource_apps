@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_payment_form_inherit_vendor_payment_approvals" model="ir.ui.view">
+        <field name="name">account.payment.view.form.inherit.vendor.payment.approval</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header//button[@name='action_post']" position="after">
+                <button
+                        string="Confirm"
+                        type="object"
+                        name="action_send_for_approval"
+                        class="oe_highlight"
+                        invisible="state not in ['draft'] or payment_type == 'inbound'"
+                />
+
+                <button name="approve_transfer" string="Approve" type="object"
+                        class="oe_highlight"
+                        invisible="is_approve_person == False or state !='waiting_approval' or is_self_assign == False or not is_logged_user"
+                        groups="vendor_payment_approval.group_vendor_payment_approver,base.group_system"
+                />
+                <button name="reject_transfer" string="Reject" type="object"
+                        class="oe_highlight"
+                        invisible="not is_approve_person or state != 'waiting_approval' or not is_self_assign or not is_logged_user"
+                        groups="vendor_payment_approval.group_vendor_payment_approver,base.group_system"/>
+
+                <button
+                        name="action_self_assign"
+                        string="Self Assign"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="not is_approve_person or state != 'waiting_approval' or is_self_assign"
+                        groups="vendor_payment_approval.group_vendor_payment_approver,base.group_system"/>
+
+                <button
+                        name="action_self_assign"
+                        string="Self Assign"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'approved' or is_self_assign or payment_type == 'inbound'"
+                        groups="account.group_account_manager,account.group_account_user,base.group_system"
+                />
+            </xpath>
+
+            <xpath expr="//field[@name='payment_type']" position="after">
+                <field name="is_logged_user" invisible="1"/>
+            </xpath>
+            <xpath expr="//header//button[@name='action_post']" position="attributes">
+                <attribute name="invisible">
+                    state != 'approved' or not is_self_assign or not is_logged_user
+                </attribute>
+                <attribute name="groups">
+                    account.group_account_user,account.group_account_manager,base.group_system
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='payment_type']" position="attributes">
+                <attribute name="readonly">state != 'draft' or partner_type == 'supplier'</attribute>
+            </xpath>
+            <field name="partner_id" position="after">
+                <field name="is_approve_person" invisible="1"/>
+                <field name="is_vendor_approval" invisible="1"/>
+                <field name="account_invoice_line" invisible="1"/>
+                <field name="is_self_assign" invisible="1"/>
+                <field name="assigned_user_ids" invisible="1"/>
+                <field name="approval_finance_id" invisible="1"/>
+                <field name="reject_reason" invisible="reject_reason == False"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_account_payment_search_inherit_vendor_payment_approvals" model="ir.ui.view">
+        <field name="name">account.payment.view.search.inherit.vendor.payment.approval</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/filter[@name='state_draft']" position="after">
+                <filter string="Waiting For Approval" name="state_waiting_approval"
+                        domain="[('state', '=', 'waiting_approval')]"/>
+                <filter string="Approved" name="state_approved"
+                        domain="[('state', '=', 'approved')]"/>
+                <filter string="Rejected" name="state_rejected"
+                        domain="[('state', '=', 'rejected')]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
