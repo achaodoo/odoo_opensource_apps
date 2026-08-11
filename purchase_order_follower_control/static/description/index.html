@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Purchase Order Follower Notification Control</title>
+        <style>
+            body {
+                font-family: "Segoe UI", Tahoma, sans-serif;
+                background: #f5f7fa;
+                color: #333;
+                margin: 0;
+                padding: 0
+            }
+
+            header {
+                background: #007b83;
+                color: #fff;
+                text-align: center;
+                padding: 2rem 1rem
+            }
+
+            h1 {
+                margin: 0;
+                font-size: 2rem
+            }
+
+            .section {
+                max-width: 1000px;
+                margin: 2rem auto;
+                padding: 1.5rem;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 3px 8px rgba(0, 0, 0, .1)
+            }
+
+            h2 {
+                color: #007b83;
+                border-bottom: 2px solid #007b83;
+                padding-bottom: .5rem
+            }
+
+            p {
+                line-height: 1.6
+            }
+
+            .screenshots {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center
+            }
+
+            .screenshots figure {
+                margin: 0;
+                text-align: center
+            }
+
+            .screenshots img {
+                width: 300px;
+                border-radius: 8px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, .1)
+            }
+
+            .flow {
+                background: #eef8f8;
+                border-left: 4px solid #007b83;
+                padding: 1rem;
+                border-radius: 6px
+            }
+
+            footer {
+                background: #007b83;
+                color: #fff;
+                text-align: center;
+                padding: 1rem;
+                margin-top: 3rem
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Purchase Order Follower Notification Control</h1>
+            <p>Control unwanted follower notifications on Purchase Orders</p>
+        </header>
+
+        <section class="section">
+            <h2>Overview</h2>
+            <p>This module helps control notifications sent to followers of <b>Purchase Orders</b>.
+                It prevents unwanted Purchase Order notifications simply because a user is a follower,
+                while preserving standard Odoo notification behavior for other documents.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Controls follower notifications on Purchase Orders.</li>
+                <li>Prevents unwanted notifications to Purchase Order followers.</li>
+                <li>Works with the standard Odoo Purchase Order workflow.</li>
+                <li>Does not change notification behavior for other Odoo documents.</li>
+                <li>Lightweight with minimal configuration.</li>
+                <li>Compatible with Odoo 17 Community and Enterprise.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>How It Works</h2>
+            <div class="flow">
+                <p>
+                    <b>Purchase Order</b>
+                    → Follower / Approver → Notification filtering → Intended recipients
+                </p>
+            </div>
+            <p>The module extends Odoo's standard mail notification mechanism and applies the filtering
+                specifically to Purchase Orders.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Use Case</h2>
+            <p>When a user is added as a follower or approver on a Purchase Order, they may receive
+                notifications that are not relevant to them. This module helps reduce unnecessary
+                Purchase Order notifications without changing the standard mail framework across Odoo.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Screenshots</h2>
+            <div class="screenshots">
+                <figure>
+                    <img src="screenshot_01.png" alt="Purchase Order notification result">
+                    <figcaption>Purchase Order notification result</figcaption>
+                </figure>
+                <figure>
+                    <img src="screenshot_02.png" alt="Purchase Order email recipients">
+                    <figcaption>Purchase Order email recipients</figcaption>
+                </figure>
+                <figure>
+                    <img src="screenshot_03.png" alt="Purchase Order followers">
+                    <figcaption>Purchase Order followers</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Compatibility</h2>
+            <ul>
+                <li>
+                    <b>Odoo Version:</b>
+                    17.0
+                </li>
+                <li>
+                    <b>Edition:</b>
+                    Community &amp; Enterprise
+                </li>
+                <li>
+                    <b>Dependency:</b>
+                    Purchase
+                </li>
+                <li>
+                    <b>License:</b>
+                    LGPL-3
+                </li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>About Achaodoo</h2>
+            <p>Achaodoo specializes in Odoo ERP development, customizations, integrations,
+                technical consulting, and training. We build practical Odoo solutions and share
+                knowledge through tutorials, blogs, and courses.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Support</h2>
+            <p>Need assistance or have questions about this module?</p>
+            <ul>
+                <li>🌐 Website:
+                    <a href="https://achaodoo.com">https://achaodoo.com</a>
+                </li>
+                <li>📧 Email:
+                    <a href="mailto:hello.achaodoo@gmail.com">hello.achaodoo@gmail.com</a>
+                </li>
+                <li>💼 LinkedIn:
+                    <a href="https://www.linkedin.com/company/achaodoo/" target="_blank">Achaodoo</a>
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>Developed by
+                <strong>Achaodoo</strong>
+                | © 2026 Achaodoo. All Rights Reserved.
+            </p>
+        </footer>
+    </body>
+</html>
