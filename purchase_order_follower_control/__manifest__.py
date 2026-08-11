@@ -18,6 +18,7 @@ with Purchase Orders while preserving the standard Odoo purchase workflow.
     "website": "https://achaodoo.com/",
     "license": "LGPL-3",
     "support": "hello.achaodoo@gmail.com",
+    "images": ["static/description/banner.png"],
     'depends': ['purchase'],
     'data': [],
     'installable': True,
