@@ -1,0 +1,557 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="soa_pdf_report">
+        <t t-call="web.basic_layout">
+            <div class="page"
+                 style="text-align: left; text-align:justify; margin-left: -10px; margin-right: -10px; font-family: Arial;">
+                <h2 style="text-align: center;font-size: 17.5px; margin-top:0px">
+                    <strong>
+                        Statement of Account As On
+                         <span t-esc="data['as_on_date_str']"/>
+                    </strong>
+                </h2>
+                <br/>
+                <table style="width: 100%; height: 100px; border-collapse: collapse; border: transparent;">
+                    <tr>
+                        <!-- Left side: Partner details -->
+                        <td style="width: 50%; vertical-align: top; padding: 0px; height: 80%; padding-left: 4px; padding-bottom: 7px;">
+                            <table style="border-collapse: collapse; text-align: left; font-size: 13.5px; width: 100%; border: transparent; line-height: 1.2;">
+                                <tr>
+                                    <td style="text-align: left; padding: 2px; width: 100%;">
+                                        <t t-if="data['partner_name']">
+                                            <span t-esc="data['partner_name']"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="data['partner_street']">
+                                            <span t-esc="data['partner_street']"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="data['partner_street2']">
+                                            <span t-esc="data['partner_street2']"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="data['partner_city']">
+                                            <span t-esc="data['partner_city']"/>,
+                                        </t>
+                                        <t t-if="data['partner_state']">
+                                            <span t-esc="data['partner_state']"/>,
+                                        </t>
+                                        <t t-if="data['partner_country']">
+                                            <span t-esc="data['partner_country']"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="data['partner_phone']">
+                                            Tel:
+                                            <span t-esc="data['partner_phone']"/>
+                                            <br/>
+                                        </t>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+
+                        <!-- Right side: Company details -->
+                        <td style="width: 50%; vertical-align: top; padding: 0px; height: 80%; padding-left: 190px; padding-bottom: 7px;">
+                            <table style="border-collapse: collapse; text-align: left; font-size: 13.5px; width: 100%; border: transparent; line-height: 1.2;">
+                                <tr>
+                                    <td style="text-align: left; padding: 2px; width: 100%;">
+                                        <t t-if="env.company.name">
+                                            <span t-out="env.company.name"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="env.company.zip">
+                                            PO Box:<span t-out="env.company.zip"/>,
+                                        </t>
+                                        <t t-if="env.company.street">
+                                            <span t-out="env.company.street"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="env.company.street2">
+                                            <span t-out="env.company.street2"/>,
+                                        </t>
+                                        <t t-if="env.company.city">
+                                            <span t-out="env.company.city "/>,
+                                        </t>
+                                        <t t-if="env.company.state_id.name">
+                                            <span t-out="env.company.state_id.name"/>,
+                                        </t>
+                                        <t t-if="env.company.country_id.name">
+                                            <span t-out="env.company.country_id.name"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="env.company.phone">
+                                            Tel:
+                                            <span t-out="env.company.phone"/>
+                                        </t>
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table style=" table-layout: fixed; border: 1px solid black; border-collapse: collapse; text-align: left; font-size: 13.5px; width: 100%;  margin-top:5px">
+                    <thead>
+                        <tr style="text-align: center; background-color: #d9d9d9">
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:17px; padding-top:3px;">
+                                Voucher No.
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:10px; padding-top:3px;">
+                                Date
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:37px; padding-top:3px;">
+                                Narration
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:8px; padding-top:3px;">
+                                Credit Days
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:14px; padding-top:3px;">
+                                Balance
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:12px; padding-top:3px;">
+                                1-30
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:12px; padding-top:3px;">
+                                31-60
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:12px; padding-top:3px;">
+                                61-90
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:12px; padding-top:3px;">
+                                91-180
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:12px; padding-top:3px;">
+                                181-360
+                            </th>
+                            <th style="border: 1px solid; font-size: 13.5px; height: 30px; width:12px; padding-top:3px;">
+                                >360
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="data['invoices']" t-as="entry">
+                            <tr>
+                                <t t-if="entry['voucher']">
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="entry['voucher']"/>
+                                </t>
+                                <t t-else="">
+
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px;">
+
+                                    </td>
+                                </t>
+                                <t t-if="entry['invoice_date']">
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="entry['invoice_date']"/>
+                                </t>
+                                <t t-else="">
+
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; ">
+
+                                    </td>
+                                </t>
+                                <t t-if="entry['narration']">
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="entry['narration']"/>
+                                </t>
+                                <t t-else="">
+
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; ">
+
+                                    </td>
+                                </t>
+                                <t t-if="entry['credit_days']">
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="entry['credit_days'] or ''"/>
+                                </t>
+                                <t t-else="">
+
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="data['partner_credit'] or ''">
+
+                                    </td>
+                                </t>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['balance'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['under_30'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['between_30_60'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['between_60_90'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['between_90_180'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['between_180_360'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['greater_360'])"/>
+                            </tr>
+                        </t>
+                        <tr style="font-weight: bold; background-color: #f2f2f2;">
+                            <td colspan="4" style="border: 1px solid; text-align: center; padding: 3px;">Total</td>
+                            <t t-if="data['total_balance']">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(data['total_balance'])"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="data['total_30']">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(data['total_30'])"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="data['total_30_60']">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(data['total_30_60'])"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="data['total_60_90']">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(data['total_60_90'])"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="data['total_90_180']">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(data['total_90_180'])"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="data['total_180_360']">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(data['total_180_360'])"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="data['total_greater_360']">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(data['total_greater_360'])"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="soa_report">
+        <t t-call="web.basic_layout">
+            <div class="page"
+                 style="text-align: left; text-align:justify; margin-left: -10px; margin-right: -10px; font-family: Arial;">
+                <h2 style="text-align: center;font-size: 17.5px; margin-top:0px">
+                    <strong>
+                        Statement of Account As On
+                        <span t-esc="as_on_date_str"/>
+                    </strong>
+                </h2>
+                <br/>
+                <table style="width: 100%; height: 100px; border-collapse: collapse; border: transparent;">
+                    <tr>
+                        <!-- Left side: Partner details -->
+                        <td style="width: 50%; vertical-align: top; padding: 0px; height: 80%; padding-left: 4px; padding-bottom: 7px;">
+                            <table style="border-collapse: collapse; text-align: left; font-size: 13.5px; width: 100%; border: transparent; line-height: 1.2;">
+                                <tr>
+                                    <td style="text-align: left; padding: 2px; width: 100%;">
+                                        <t t-if="partner_name">
+                                            <span t-esc="partner_name"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="partner_street">
+                                            <span t-esc="partner_street"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="partner_street2">
+                                            <span t-esc="partner_street2"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="partner_city">
+                                            <span t-esc="partner_city"/>,
+                                        </t>
+                                        <t t-if="partner_state">
+                                            <span t-esc="partner_state"/>,
+                                        </t>
+                                        <t t-if="partner_country">
+                                            <span t-esc="partner_country"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="partner_phone">
+                                            Tel:
+                                            <span t-esc="partner_phone"/>
+                                            <br/>
+                                        </t>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+
+                        <!-- Right side: Company details -->
+                        <td style="width: 50%; vertical-align: top; padding: 0px; height: 80%; padding-left: 190px; padding-bottom: 7px;">
+                            <table style="border-collapse: collapse; text-align: left; font-size: 13.5px; width: 100%; border: transparent; line-height: 1.2;">
+                                <tr>
+                                    <td style="text-align: left; padding: 2px; width: 100%;">
+                                        <t t-if="env.company.name">
+                                            <span t-out="env.company.name"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="env.company.zip">
+                                            PO Box:<span t-out="env.company.zip"/>,
+                                        </t>
+                                        <t t-if="env.company.street">
+                                            <span t-out="env.company.street"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="env.company.street2">
+                                            <span t-out="env.company.street2"/>,
+                                        </t>
+                                        <t t-if="env.company.city">
+                                            <span t-out="env.company.city "/>,
+                                        </t>
+                                        <t t-if="env.company.state_id.name">
+                                            <span t-out="env.company.state_id.name"/>,
+                                        </t>
+                                        <t t-if="env.company.country_id.name">
+                                            <span t-out="env.company.country_id.name"/>
+                                            <br/>
+                                        </t>
+                                        <t t-if="env.company.phone">
+                                            Tel:
+                                            <span t-out="env.company.phone"/>
+                                        </t>
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <br/>
+                <table style=" table-layout: fixed; border: 1px solid black; border-collapse: collapse; text-align: left; font-size: 13px; width: 100%;  margin-top:5px">
+                    <thead>
+                        <tr style="text-align: center; background-color: #d9d9d9">
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:20px; padding-top:3px;">
+                                Voucher No.
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:13px; padding-top:3px;">
+                                Date
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:45px; padding-top:3px;">
+                                Narration
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:10px; padding-top:3px;">
+                                Credit Days
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:16px; padding-top:3px;">
+                                Balance
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:14px; padding-top:3px;">
+                                1-30
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:14px; padding-top:3px;">
+                                31-60
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:14px; padding-top:3px;">
+                                61-90
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:14px; padding-top:3px;">
+                                91-180
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:14px; padding-top:3px;">
+                                181-360
+                            </th>
+                            <th style="border: 1px solid; font-size: 13px; height: 30px; width:14px; padding-top:3px;">
+                                >360
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="invoices" t-as="entry">
+                            <tr>
+                                <t t-if="entry['voucher']">
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="entry['voucher']"/>
+                                </t>
+                                <t t-else="">
+
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px;">
+
+                                    </td>
+                                </t>
+                                <t t-if="entry['invoice_date']">
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="entry['invoice_date']"/>
+                                </t>
+                                <t t-else="">
+
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; ">
+
+                                    </td>
+                                </t>
+                                <t t-if="entry['narration']">
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="entry['narration']"/>
+                                </t>
+                                <t t-else="">
+
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; ">
+
+                                    </td>
+                                </t>
+                                <t t-if="entry['credit_days']">
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="entry['credit_days'] or ''"/>
+                                </t>
+                                <t t-else="">
+
+                                    <td style="border-right: 1px solid; vertical-align: top; text-align: left; padding: 3px;  height: 30px; "
+                                        t-esc="partner_credit or ''">
+
+                                    </td>
+                                </t>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['balance'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['under_30'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['between_30_60'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['between_60_90'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['between_90_180'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['between_180_360'])"/>
+                                <td style="border-right: 1px solid; vertical-align: top; text-align: right; padding: 3px; height: 30px;"
+                                    t-esc="'{:,.2f}'.format(entry['greater_360'])"/>
+                            </tr>
+                        </t>
+                        <tr style="font-weight: bold; background-color: #f2f2f2;">
+                            <td colspan="4" style="border: 1px solid; text-align: center; padding: 3px;">Total</td>
+                            <t t-if="total_balance">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(total_balance)"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="total_30">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(total_30)"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="total_30_60">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(total_30_60)"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="total_60_90">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(total_60_90)"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="total_90_180">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(total_90_180)"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="'total_180_360'">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(total_180_360)"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                            <t t-if="'total_greater_360'">
+                                <td style="border: 1px solid; text-align: right; padding: 3px;">
+                                    <span t-esc="'{:,.2f}'.format(total_greater_360)"/>
+                                </td>
+                            </t>
+                            <t t-else="">
+
+                                <td style="border: 1px solid; vertical-align: top; text-align: right; padding: 3px; ">
+                                    0.00
+                                </td>
+                            </t>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+</odoo>

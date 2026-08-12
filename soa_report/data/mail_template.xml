@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template_statement_of_account" model="mail.template">
+            <field name="name">Statement of Account</field>
+            <field name="model_id" ref="model_soa_report"/>
+            <field name="subject">Statement of Account</field>
+            <field name="email_from">{{user.email_formatted}}</field>
+            <field name="partner_to">{{ object.partner_id.id}}</field>
+            <field name="body_html" type="html">
+                <t t-set="partner_name" t-value="ctx.get('partner_name', 'Customer')"/>
+                <t t-set="total_balance" t-value="ctx.get('total_balance', '0.00')"/>
+
+                <p>Dear <t t-esc="partner_name"/>,
+                </p>
+
+                <p>It has come to our attention that you have an outstanding balance of
+                    <strong>
+                        <t t-esc="total_balance"/>
+                    </strong>
+                    .
+                </p>
+
+                <p>We kindly request that you take the necessary action to settle this amount within the next 8 days.
+                </p>
+
+                <p>If you have already made the payment after receiving this message, please disregard it. Our
+                    accounting department is available if you require any assistance or have any questions.
+                </p>
+
+                <p>Thank you for your cooperation.</p>
+
+                <p>Sincerely,</p>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="soa_report_reporting_menu"
+        name="SOA Reports"
+        parent="account.menu_finance_reports"
+        sequence="35"
+    />
+
+    <record id="soa_report_menu" model="ir.ui.menu">
+        <field name="name">SOA Report</field>
+        <field name="parent_id" ref="soa_report_reporting_menu"/>
+        <field name="action" ref="action_soa_report"/>
+        <field name="sequence" eval="10"/>
+    </record>
+
+</odoo>
