@@ -28,7 +28,7 @@ the statement by email.
         'views/soa_report_menus.xml',
     ],
     'images': ['static/description/banner.png'],
-    "license": "LGPL-3",
+    'license': 'AGPL-3',
     'installable': True,
     'application': False,
 }
