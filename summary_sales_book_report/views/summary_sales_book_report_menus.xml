@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="summary_sales_book_report_menu" model="ir.ui.menu">
+        <field name="name">Sales Book Report</field>
+        <field name="parent_id" ref="account.menu_finance_reports"/>
+        <field name="action" ref="action_summary_sales_book_report"/>
+        <field name="sequence" eval="10"/>
+    </record>
+
+</odoo>

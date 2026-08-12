@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="summary_sales_book_report" model="ir.ui.view">
+        <field name="name">summary.sales.book.report.form</field>
+        <field name="model">summary.sales.book.report</field>
+        <field name="arch" type="xml">
+            <form string="Summary Sales Book Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Generate Report" type="object" name="action_generate_report" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_summary_sales_book_report" model="ir.actions.act_window">
+        <field name="name">Summary Sales Book Report</field>
+        <field name="res_model">summary.sales.book.report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="summary_sales_book_report"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_summary_sales_book_report_xlsx" model="ir.actions.report">
+        <field name="name">Summary sales book Report</field>
+        <field name="model">summary.sales.book.report</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">summary_sales_book_report.summary_sales_book_report</field>
+        <field name="report_file">summary_sales_book_report.summary_sales_book_report</field>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+
