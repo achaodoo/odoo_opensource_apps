@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="staff_imprest_request_view_search" model="ir.ui.view">
+            <field name="name">staff.imprest.request.search</field>
+            <field name="model">staff.imprest.request</field>
+            <field name="arch" type="xml">
+                <search string="Staff Imprest Request">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="user_id"/>
+                    <field name="status"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="staff_imprest_request_view_form" model="ir.ui.view">
+            <field name="name">staff.imprest.request.view.form</field>
+            <field name="model">staff.imprest.request</field>
+            <field name="arch" type="xml">
+                <form string="Staff Imprest Request">
+
+                    <header>
+                        <button string="Submit" type="object" name="action_submit"
+                                class="oe_highlight"
+                                invisible="status != 'new'"
+                                groups="base.group_user"/>
+
+                        <button string="Self Assign"
+                                type="object"
+                                name="action_self_assign"
+                                id="hod_self_assign_button"
+                                class="oe_highlight"
+                                invisible="status != 'hod_approval' or is_self_assign == True"
+                                groups="staff_imprest_request.group_staff_imprest_hod,base.group_system"/>
+
+                        <button string="Approve"
+                                type="object"
+                                name="action_approve"
+                                id="hod_approve_button"
+                                class="oe_highlight"
+                                invisible="status != 'hod_approval' or is_self_assign == False or is_self_assigned_user == False"
+                                groups="staff_imprest_request.group_staff_imprest_hod,base.group_system"/>
+
+                        <button name="action_reject"
+                                type="object"
+                                string="Reject"
+                                id="hod_reject_button"
+                                class="oe_highlight"
+                                invisible="status != 'hod_approval' or is_self_assign == False or is_self_assigned_user == False"
+                                groups="staff_imprest_request.group_staff_imprest_hod,base.group_system"/>
+
+                        <button string="Self Assign" type="object" name="action_self_assign"
+                                id="fin_mgr_self_assign_button"
+                                class="oe_highlight"
+                                invisible="status not in ('finance_mgr_approval') or is_self_assign == True"
+                                groups="staff_imprest_request.group_staff_imprest_finance,base.group_system"/>
+
+                        <button string="Approve" type="object" name="action_approve" id="fin_mgr_approve_button"
+                                class="oe_highlight"
+                                invisible="status not in ('finance_mgr_approval') or is_self_assign == False or is_self_assigned_user == False"
+                        />
+                        <button name="action_reject" type="object" string="Reject" id="fin_mgr_reject_button"
+                                class="oe_highlight"
+                                invisible="status not in ('finance_mgr_approval') or is_self_assign == False or is_self_assigned_user == False"
+                        />
+
+                        <field name="status" widget="statusbar"
+                               statusbar_visible="new,hod_approval,finance_mgr_approval,closed"
+                        />
+
+                    </header>
+                    <sheet>
+                        <div name="button_box" class="oe_button_box">
+                            <button name="action_open_account_payment"
+                                    class="oe_stat_button"
+                                    icon="fa-money"
+                                    type="object"
+                                    invisible="payment_id == False">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_value">
+                                        Payment
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="user_id" readonly="1" force_save="1"/>
+                                <field name="amount" readonly="status != 'new'"/>
+                                <field name="description" readonly="status != 'new'"/>
+                                <field name="is_self_assign" invisible="1"/>
+                                <field name="is_self_assigned_user" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date" readonly="status != 'new'"/>
+                                <field name="account_journal_id" readonly="status != 'new'"/>
+                                <field name="employee_id" invisible="1"/>
+                                <field name="payment_id" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="company_id"
+                                       groups="base.group_multi_company"
+                                       readonly="1"/>
+                                <field name="reject_reason" readonly="1" force_save="1"
+                                       invisible="reject_reason==False"/>
+                            </group>
+
+                        </group>
+                        <group name="roles" string="Assigned User and Roles">
+                            <field name="assigned_user_ids" widget="many2many_tags" readonly="1" force_save="1"/>
+                            <field name="assigned_group_ids" widget="many2many_tags" readonly="1" force_save="1"/>
+                        </group>
+
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="staff_imprest_request_view_tree" model="ir.ui.view">
+            <field name="name">staff.imprest.request.view.tree</field>
+            <field name="model">staff.imprest.request</field>
+            <field name="arch" type="xml">
+                <tree string="Staff Imprest Request">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="description"/>
+                    <field name="user_id"/>
+                    <field name="amount"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="staff_imprest_request_action" model="ir.actions.act_window">
+            <field name="name">Staff Imprest Request</field>
+            <field name="res_model">staff.imprest.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new staff imprest request
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

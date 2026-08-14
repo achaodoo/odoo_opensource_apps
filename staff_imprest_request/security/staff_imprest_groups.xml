@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_staff_imprest" model="ir.module.category">
+        <field name="name">Staff Imprest</field>
+        <field name="description">Staff Imprest Request Management</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <record id="group_staff_imprest_user" model="res.groups">
+        <field name="name">Staff Imprest User</field>
+        <field name="category_id" ref="module_category_staff_imprest"/>
+    </record>
+
+    <record id="group_staff_imprest_hod" model="res.groups">
+        <field name="name">Staff Imprest HOD</field>
+        <field name="category_id" ref="module_category_staff_imprest"/>
+    </record>
+
+    <record id="group_staff_imprest_finance" model="res.groups">
+        <field name="name">Staff Imprest Finance</field>
+        <field name="category_id" ref="module_category_staff_imprest"/>
+    </record>
+
+</odoo>

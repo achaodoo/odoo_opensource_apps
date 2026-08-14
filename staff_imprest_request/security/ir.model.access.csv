@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_staff_imprest_request_user,staff.imprest.request.user,model_staff_imprest_request,staff_imprest_request.group_staff_imprest_user,1,1,1,0
+access_staff_imprest_request_hod,staff.imprest.request.hod,model_staff_imprest_request,staff_imprest_request.group_staff_imprest_hod,1,1,0,0
+access_staff_imprest_request_finance,staff.imprest.request.finance,model_staff_imprest_request,staff_imprest_request.group_staff_imprest_finance,1,1,0,0
+access_staff_imprest_request_admin,staff.imprest.request.admin,model_staff_imprest_request,base.group_system,1,1,1,1
+access_staff_imprest_reject_wizard,access_staff_imprest_reject_wizard,model_staff_imprest_reject_wizard,base.group_user,1,1,1,1

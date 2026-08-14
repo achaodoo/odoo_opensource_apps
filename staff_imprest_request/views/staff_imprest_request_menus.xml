@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <menuitem
+        id="staff_imprest_request_menu_root"
+        name="Staff Imprest Requests"
+        action="staff_imprest_request_action"
+        parent="hr.menu_hr_root"
+        sequence="50"/>
+</odoo>

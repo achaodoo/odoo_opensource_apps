@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+        <record id="email_template_staff_imprest_hod_approval" model="mail.template">
+            <field name="name">Staff Imprest Request - HOD Approval</field>
+            <field name="model_id" ref="model_staff_imprest_request"/>
+            <field name="subject">Staff Imprest Request - HOD Approval Required</field>
+            <field name="description">Staff Imprest Request - HOD approval notification</field>
+            <field name="body_html" type="html">
+                <div>
+                    <p>Hi,</p>
+                    <p>Please approve the staff imprest request.</p>
+
+                    <div style="margin: 16px 0px; text-align: center;">
+                        <a t-att-href="'/web#id=%s&amp;model=staff.imprest.request&amp;view_type=form' % object.id"
+                           style="background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;">
+                            View Staff Imprest Request
+                        </a>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+        <record id="email_template_finance_manager_approval" model="mail.template">
+            <field name="name">Staff Imprest Request - Finance Approval</field>
+            <field name="model_id" ref="model_staff_imprest_request"/>
+            <field name="subject">Staff Imprest Request - Finance Approval Required</field>
+            <field name="description">Staff Imprest Request - Finance approval notification</field>
+            <field name="body_html" type="html">
+                <t t-foreach="object" t-as="line">
+                    <p>Hi,</p>
+                    <p>Please Approve the staff imprest request</p>
+                    <br/>
+                    <div style="margin: 16px 0px 16px 0px; text-align: center;">
+                        <a t-att-href="'/web#id=%s&amp;model=staff.imprest.request&amp;view_type=form' % (object.id)"
+                           style="background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;">
+                            View Staff Imprest Request
+                        </a>
+                    </div>
+                </t>
+            </field>
+        </record>
+
+        <record id="email_template_imprest_approved_by_finance_manager" model="mail.template">
+            <field name="name">Staff Imprest Request - Approved</field>
+            <field name="model_id" ref="model_staff_imprest_request"/>
+            <field name="subject">Staff Imprest Request - Approved by Finance Manager</field>
+            <field name="description">Staff imprest request - approved notification</field>
+            <field name="body_html" type="html">
+                <t t-foreach="object" t-as="line">
+                    <p>
+                        Staff imprest request
+                        (<strong><t t-out="object.name or ''"/></strong>)
+                        has been approved.
+                    </p>
+                    <p>
+                        Please proceed with the payment.
+                    </p>
+                    <div style="margin: 16px 0px 16px 0px; text-align: center;">
+                        <a t-att-href="'/web#id=%s&amp;model=staff.imprest.request&amp;view_type=form' % (object.id)"
+                           style="background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;">
+                            View Staff Imprest Request
+                        </a>
+                    </div>
+                </t>
+            </field>
+        </record>
+
+        <record id="email_template_imprest_request_rejection" model="mail.template">
+            <field name="name">Staff Imprest Request Rejection Notification</field>
+            <field name="model_id" ref="model_staff_imprest_request"/>
+            <field name="subject">Imprest Request: Rejected</field>
+            <field name="email_from">{{ object.env.user.partner_id.email }}</field>
+            <field name="email_to">{{ object.user_id.partner_id.email }}</field>
+            <field name="description">Staff imprest request rejection notification</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+
+                        Hello,
+                        <br/>
+                        This is to inform you that your imprest request has been rejected.
+                        <p>Reason:<t t-out="object.reject_reason"/></p>
+                        <br/>
+                        <div style="margin: 16px 0px 16px 0px; text-align: center;">
+                            <a t-att-href="'/web#id=%s&amp;model=staff.imprest.request&amp;view_type=form' % (object.id)"
+                               style="background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;">
+                                View Imprest Request</a>
+                        </div>
+                        <br/>
+                        Thank you,
+                    </p>
+                </div>
+
+            </field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+    </data>
+</odoo>
+
+
+
