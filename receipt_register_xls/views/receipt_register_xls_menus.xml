@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_receipt_register_xls_report"
+              name="Receipt Register"
+              sequence="50"
+              parent="account.menu_finance_reports"
+              action="receipt_register_report_action"
+              groups="account.group_account_user,account.group_account_manager"/>
+</odoo>
