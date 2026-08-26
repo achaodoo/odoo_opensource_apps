@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDC Payment Register Report</title>
+
+    <style>
+        .screenshot-img {
+            max-width: 90%;
+            height: auto;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: #f5f5f5;
+            border-left: 4px solid #875A7B;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 4px solid #f0ad4e;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>PDC Payment Register Report</h1>
+
+    <p>
+        <strong>PDC Payment Register Report</strong> is an Odoo Accounting
+        reporting module that generates an Excel (XLSX) report for
+        outgoing Post-Dated Cheque (PDC) payments.
+    </p>
+
+    <p>
+        It allows accounting users to filter PDC payments by date range
+        and bank journal and export payment details including vendor,
+        reference, bank account, cheque date, and amount.
+    </p>
+
+
+    <h2>Module Dependency</h2>
+
+    <div class="warning-box">
+
+        <p>
+            <strong>Important:</strong>
+            This module depends on the
+            <strong>Cheque Tracker Alerts</strong> module.
+        </p>
+
+        <p>
+            The <strong>Cheque Tracker Alerts</strong> module must be
+            installed before installing and using the
+            <strong>PDC Payment Register Report</strong>.
+        </p>
+
+        <p>
+            The Cheque Tracker Alerts module is available on the
+            <strong>Achaodoo Odoo Apps Store</strong>.
+        </p>
+
+        <p>
+            <a href="https://apps.odoo.com/apps/modules/browse?search=achaodoo"
+               target="_blank"
+               rel="noopener noreferrer">
+                View Achaodoo modules on the Odoo Apps Store
+            </a>
+        </p>
+
+    </div>
+
+
+    <h2>Key Features</h2>
+
+    <ul>
+
+        <li>
+            <strong>PDC Payment Reporting:</strong>
+            Generate an Excel report for outgoing PDC cheque payments.
+        </li>
+
+        <li>
+            <strong>Date Range Filter:</strong>
+            Select the start date and end date for the report.
+        </li>
+
+        <li>
+            <strong>Bank Journal Filter:</strong>
+            Select one or more bank journals to include in the report.
+        </li>
+
+        <li>
+            <strong>Cheque Tracker Integration:</strong>
+            Uses the cheque tracker status configured on payments.
+        </li>
+
+        <li>
+            <strong>XLSX Export:</strong>
+            Generate and download the payment register in Excel format.
+        </li>
+
+        <li>
+            <strong>Vendor Details:</strong>
+            Display the vendor associated with each PDC payment.
+        </li>
+
+        <li>
+            <strong>Bank Account:</strong>
+            Display the bank account associated with the selected journal.
+        </li>
+
+        <li>
+            <strong>Cheque Date:</strong>
+            Display the cheque date for each PDC payment.
+        </li>
+
+        <li>
+            <strong>Reference:</strong>
+            Display the payment reference in the report.
+        </li>
+
+        <li>
+            <strong>Total Amount:</strong>
+            Display the total amount of the selected PDC payments.
+        </li>
+
+    </ul>
+
+
+    <h2>Cheque Tracker Integration</h2>
+
+    <p>
+        The PDC Payment Register Report is designed to work together with
+        the <strong>Cheque Tracker Alerts</strong> module.
+    </p>
+
+    <p>
+        The report uses cheque tracker information from the payment and
+        includes payments whose configured cheque tracker status requires
+        an alert.
+    </p>
+
+    <p>
+        This provides a simple way to generate a register of PDC payments
+        that are being tracked through the cheque tracker functionality.
+    </p>
+
+
+    <h2>Access the Report</h2>
+
+    <p>
+        After installing the required modules, the report can be accessed
+        from the Odoo Accounting application.
+    </p>
+
+    <p>
+        Navigate to:
+    </p>
+
+    <p>
+        <strong>
+            Accounting → Configuration → Cheque Tracker →
+            PDC Payment Register Report
+        </strong>
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_menu.png"
+             alt="PDC Payment Register Report menu"
+             class="screenshot-img"/>
+    </p>
+
+
+    <h2>PDC Payment Register Wizard</h2>
+
+    <p>
+        The report wizard allows users to select the required reporting
+        period and bank journals before generating the Excel report.
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_report_wizard.png"
+             alt="PDC Payment Register Report wizard"
+             class="screenshot-img"/>
+    </p>
+
+
+    <h3>Report Filters</h3>
+
+    <ul>
+
+        <li>
+            <strong>Date:</strong>
+            Select the beginning of the reporting period.
+        </li>
+
+        <li>
+            <strong>Date End:</strong>
+            Select the end of the reporting period.
+        </li>
+
+        <li>
+            <strong>Journal:</strong>
+            Select one or more bank journals.
+        </li>
+
+    </ul>
+
+
+    <h2>Generated PDC Payment Register</h2>
+
+    <p>
+        Click the <strong>XLS</strong> button to generate the
+        PDC Payment Register in Excel format.
+    </p>
+
+    <p style="text-align: center;">
+        <img src="screenshot_pdc_payment_report.png"
+             alt="Generated PDC Payment Register Excel report"
+             class="screenshot-img"/>
+    </p>
+
+
+    <h3>Report Columns</h3>
+
+    <p>
+        The generated Excel report contains the following information:
+    </p>
+
+    <ul>
+
+        <li><strong>Date</strong></li>
+
+        <li><strong>Payment Voucher No</strong></li>
+
+        <li><strong>Vendor Name</strong></li>
+
+        <li><strong>Reference</strong></li>
+
+        <li><strong>Bank Account</strong></li>
+
+        <li><strong>Cheque Date</strong></li>
+
+        <li><strong>Amount</strong></li>
+
+        <li><strong>Total Amount</strong></li>
+
+    </ul>
+
+
+    <h2>Example Report</h2>
+
+    <p>
+        The Excel report provides a clear payment register that can be
+        used by accounting teams for reviewing outgoing PDC payments.
+    </p>
+
+    <p>
+        Each payment displays the vendor, payment voucher number,
+        reference, bank account, cheque date, and payment amount.
+    </p>
+
+
+    <h2>How It Works</h2>
+
+    <ol>
+
+        <li>
+            Install the <strong>Cheque Tracker Alerts</strong> module.
+        </li>
+
+        <li>
+            Configure the required cheque tracker statuses.
+        </li>
+
+        <li>
+            Record outgoing PDC payments in Odoo.
+        </li>
+
+        <li>
+            Open the <strong>PDC Payment Register Report</strong>.
+        </li>
+
+        <li>
+            Select the required date range.
+        </li>
+
+        <li>
+            Select one or more bank journals.
+        </li>
+
+        <li>
+            Click <strong>XLS</strong> to generate the report.
+        </li>
+
+        <li>
+            Review the generated PDC Payment Register in Excel.
+        </li>
+
+    </ol>
+
+
+    <h2>Requirements</h2>
+
+    <div class="info-box">
+
+        <ul>
+
+            <li>
+                Odoo 17 Community
+            </li>
+
+            <li>
+                Odoo Accounting
+            </li>
+
+            <li>
+                <strong>Cheque Tracker Alerts</strong> module
+            </li>
+
+            <li>
+                Bank journals configured in Odoo
+            </li>
+
+            <li>
+                Outgoing PDC payments
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <h2>Available on Achaodoo Odoo Apps Store</h2>
+
+    <p>
+        This module is developed by <strong>Achaodoo</strong> and is
+        available on the Odoo Apps Store.
+    </p>
+
+    <p>
+        The required <strong>Cheque Tracker Alerts</strong> module is
+        also available from the Achaodoo Odoo Apps Store.
+    </p>
+
+    <p>
+        <a href="https://apps.odoo.com/apps/modules/browse?search=achaodoo"
+           target="_blank"
+           rel="noopener noreferrer">
+            View Achaodoo apps on the Odoo Apps Store
+        </a>
+    </p>
+
+
+    <h2>About Achaodoo</h2>
+
+    <p>
+        Achaodoo specializes in Odoo ERP development, customizations,
+        integrations, technical consulting, and training. We develop
+        practical Odoo modules and solutions for businesses and Odoo
+        developers.
+    </p>
+
+
+    <h2>Support</h2>
+
+    <p>
+        Need assistance or have questions about this module?
+    </p>
+
+    <ul>
+
+        <li>
+            🌐 Website:
+            <a href="https://achaodoo.com"
+               target="_blank"
+               rel="noopener noreferrer">
+                achaodoo.com
+            </a>
+        </li>
+
+        <li>
+            📧 Email:
+            <a href="mailto:hello.achaodoo@gmail.com">
+                hello.achaodoo@gmail.com
+            </a>
+        </li>
+
+    </ul>
+
+
+    <footer>
+
+        <p>
+            Developed by <strong>Achaodoo</strong>
+            |
+            © 2026 Achaodoo. All Rights Reserved.
+        </p>
+
+        <p>
+
+            🌐
+            <a href="https://achaodoo.com"
+               target="_blank"
+               rel="noopener noreferrer">
+                achaodoo.com
+            </a>
+
+            |
+
+            📧
+            <a href="mailto:hello.achaodoo@gmail.com">
+                hello.achaodoo@gmail.com
+            </a>
+
+            |
+
+            💼
+            <a href="https://www.linkedin.com/company/achaodoo/"
+               target="_blank"
+               rel="noopener noreferrer">
+                LinkedIn
+            </a>
+
+        </p>
+
+    </footer>
+
+</body>
+</html>

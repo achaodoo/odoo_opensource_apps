@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='pdc_receipt_register_report_view_form'>
+            <field name="name">pdc.rec.reg.report.form</field>
+            <field name="model">pdc.rec.reg.report</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="date_start" required="1"/>
+                            <field name="journal_ids" required="0" options="{'no_create':True, 'no_open':True}"
+                                   widget="many2many_tags"/>
+                        </group>
+                        'summary': 'Generate PDC receipt register reports in XLSX format',
+    <group>
+                            <field name="date_end" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_generate_pdc_receipt_register_report" string="XLS" type="object"
+                                context="{'xls_export':1}" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="pdc_receipt_register_report_action" model="ir.actions.act_window">
+            <field name="name">PDC Receipt Register Report</field>
+            <field name="res_model">pdc.rec.reg.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="pdc_receipt_register_report_view_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

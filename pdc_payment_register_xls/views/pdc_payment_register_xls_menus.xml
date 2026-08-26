@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_pdc_payment_register_xls_report"
+              name="PDC Payment Register Report"
+              sequence="30"
+              parent="cheque_tracker_alerts.menu_cheque_tracker_root"
+              action="pdc_payment_register_report_action"
+              groups="account.group_account_user,account.group_account_manager"/>
+</odoo>

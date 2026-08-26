@@ -2,7 +2,7 @@
 
 {
     'name': 'Cheque Tracker Status',
-    'version': '17.0.1.0.0',
+    'version': '17.0.1.0.1',
     'category': 'Accounting/Accounting',
     'author': 'Achaodoo',
     'website': 'https://achaodoo.com',

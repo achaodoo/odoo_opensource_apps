@@ -18,7 +18,7 @@ class Chequetracker(models.TransientModel):
     payment_type = fields.Selection([
         ('outbound', 'Send'),
         ('inbound', 'Receive'),
-    ], string='Payment Type', default='inbound', required=True, tracking=True)
+    ], string='Payment Type', default='inbound', required=True)
 
 
     def _get_data(self):
